@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Intent</string>
     <string name="uno">Uno</string>
+    <string name="dos">Dos</string>
+    <string name="tres">Tres</string>
+    <string name="cuatro">Cuatro</string>
 </resources>
