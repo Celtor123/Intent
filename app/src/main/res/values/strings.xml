@@ -4,4 +4,10 @@
     <string name="dos">Dos</string>
     <string name="tres">Tres</string>
     <string name="cuatro">Cuatro</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="web">Web</string>
+    <string name="mate">Mate</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="camara">Camara</string>
+    <string name="textview">TextView</string>
 </resources>
