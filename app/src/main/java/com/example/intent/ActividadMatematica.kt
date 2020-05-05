@@ -11,6 +11,7 @@ import org.jetbrains.anko.db.INTEGER
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.toast
 import org.w3c.dom.Text
+import java.text.DecimalFormat
 
 open class ActividadMatematica : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ open class ActividadMatematica : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        toast("2 decimales")
         a()
         }
 
@@ -35,48 +37,50 @@ open class ActividadMatematica : AppCompatActivity() {
         val operacion:TextView=findViewById(R.id.oper)
         val restant:EditText?=findViewById(R.id.entrnum)
         val btnok: Button = findViewById(R.id.btnok)
-        var resultado:Int? = 0
+        var resultado:Double? = 0.0
 
         var uno=(0..100).random()
         btn1.text= uno.toString()
         val dos=(0..100).random()
         btn2.text=dos.toString()
-        val algo=(1..4).random()
+        val algo=(0..0).random()
         val list = listOf("+","-","x","/")
         val lista = list.get(algo)
         operacion.text=lista
 
         if(lista.equals("+")){
-            resultado=uno+dos
+            resultado=(uno+dos).toDouble()
         }
         else if(lista.equals("-")){
-            if (uno>=dos){
-                resultado=uno-dos
+            while(uno<dos){
+                uno=(dos..100).random()
+                btn1.text=uno.toString()
             }
-            else{
-                while(uno<dos){
-                    uno = (0..100).random()
-                }
-                resultado=uno-dos
-            }
-
+            resultado=(uno-dos).toDouble()
         }
         else if(lista.equals("x")){
-            resultado=uno*dos
+            resultado=uno*dos.toDouble()
         }
         else if(lista.equals("/")){
-            resultado=uno/dos
+            while(uno<dos){
+                uno=(dos..100).random()
+                btn1.text=uno.toString()
+            }
+
+            resultado="%.2f".format(uno.toDouble()/dos.toDouble()).toDouble()
         }
 
 
         btnok.onClick {
 
-            val s = Integer.parseInt(restant!!.getText().toString())
+
+            val s = restant!!.getText().toString().toDouble()
             if(resultado?.equals(s)!!){
                 toast("Resultado Correcto")
                 a()
+
             }else{
-                toast("No es correcto el resultado")
+                toast("No es correcto el resultado"+resultado)
             }
         }
     }
